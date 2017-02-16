@@ -12,6 +12,7 @@ e.g. `{"unix": 1479663089000 ,"utc": "Sun, 20 Nov 2016 17:31:29 GMT"}`.
 5. If the date string is **invalid** the api returns a JSON having the structure `{"unix": null, "utc" : "Invalid Date" }`. It is what you get from the date manipulation functions used above.
 
 #### Example usage:
+* https://fearful-roarer.gomix.me/api/timestamp
 * https://fearful-roarer.gomix.me/api/timestamp/2015-12-15
 * https://fearful-roarer.gomix.me/api/timestamp/1450137600000
 
