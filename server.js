@@ -14,11 +14,8 @@ app.use(cors({optionSuccessStatus: 200}));  // some legacy browsers choke on 204
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
-//Route to provide current Date in UTC and UNIX timestamp format
-app.get("/api/timestamp",dateconverter.defaultDate);
-
 //Route to convert provided date to UTC and UNIX timestamp
-app.get("/api/timestamp/:timestamp",dateconverter.convertDate);
+app.get("/:timestamp",dateconverter);
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (req, res) {
