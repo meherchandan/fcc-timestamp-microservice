@@ -8,7 +8,10 @@
 - If it does not contain a date or Unix timestamp, it returns null for those properties.
 
 **Example usage:**
+
 https://fearful-roarer.gomix.me/December%2015,%202015
+
 https://fearful-roarer.gomix.me/1450137600
 **Example output:**
+
 { "unix": 1450137600, "natural": "December 15, 2015" }
