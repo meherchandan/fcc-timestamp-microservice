@@ -1,26 +1,11 @@
-//Method to return current Date as UTC and UNIX timestamp
-const defaultDate = (req,res) => {
-  const date = new Date();  
-  res.json({utc:date.toUTCString(),unix:date.getTime()});
-}
-//Method to convert input Date to UTC and UNIX timestamp
-const convertDate = (req,res) =>{
-  const inputDate = req.params.timestamp;
-  const error = "Invalid Date";
+//Method to convert input Date to natural and unix timestamp
+module.exports = (req,res) =>{
+  const INPUT_DATE = req.params.timestamp;
+  const UNIX_MILLISECONDS = 1000;
+  //check if input date is unix timestamp or natual date
+  const date = (/^\d+$/.test(INPUT_DATE)) ? new Date(parseInt(INPUT_DATE)*UNIX_MILLISECONDS) : new Date(INPUT_DATE);
   
-  //check if input date only contains numbers
-  const date = (/^\d+$/.test(inputDate)) ? new Date(parseInt(inputDate)) : new Date(inputDate);
-  //check if date is valid
-  if(isNaN(date)){
-    //Error! Date is not a valid UTC or UNIX timestamp
-    return res.json({error});
-  }
-
-  //convert Date to UTC format
-  const utc  = date.toUTCString();
-  //convert Date to UNIX timestamp
-  const unix = date.getTime();
-  //Return valid UTC and UNIX timestamp
-  return res.json({utc,unix});
+  const NATURAL  = isNaN(date) ? null :date.toLocaleString('en-US',{ month: "long",day:"numeric",year:"numeric" });
+  const UNIX = isNaN(date) ? null : date.getTime()/UNIX_MILLISECONDS;
+  return res.json({unix:UNIX, natural:NATURAL});
 }
-module.exports = {defaultDate,convertDate};
